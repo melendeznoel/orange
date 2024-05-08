@@ -7,12 +7,12 @@ from dataclasses import dataclass
 class FhirNutritionProductIngredient:
     """Ingredient of product"""
     item: str
-    amount: str
+    amount: List[str]
 
     @staticmethod
     def from_dict(obj: Any) -> 'FhirNutritionProductIngredient':
         """Mapper"""
         _item = str(obj.get("item"))
-        _amount = str(obj.get("amount"))
+        _amount = [str(obj.get("amount"))]
 
         return FhirNutritionProductIngredient(_item, _amount)

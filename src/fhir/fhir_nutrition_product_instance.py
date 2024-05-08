@@ -1,28 +1,28 @@
 """One or several physical instances or occurrences of the nutrition product"""
-from typing import List
-from typing import Any
+from typing import List, Any
 from dataclasses import dataclass
+from fhir_identifier import FhirIdentifier
 
 @dataclass
 class FhirNutritionProductInstance:
     """Physical instances or occurrences of the nutrition product"""
     quantity: str
-    identifier: str
+    identifier: List[FhirIdentifier]
     name: str
-    lotNumber: str
+    lot_number: str
     expiry: str
-    useBy: str
-    biologicalSourceEvent: str
+    use_by: str
+    biological_source_event: str
 
     @staticmethod
     def from_dict(obj: Any) -> 'FhirNutritionProductInstance':
         """Mapper"""
         _quantity = str(obj.get("quantity"))
-        _identifier = str(obj.get("identifier"))
+        _identifier = [FhirIdentifier.from_dict(y) for y in obj.get("FhirIdentifier")]
         _name = str(obj.get("name"))
-        _lotNumber = str(obj.get("lotNumber"))
+        _lot_number = str(obj.get("lotNumber"))
         _expiry = str(obj.get("expiry"))
-        _useBy = str(obj.get("useBy"))
-        _biologicalSourceEvent = str(obj.get("biologicalSourceEvent"))
+        _use_by = str(obj.get("useBy"))
+        _biological_source_event = str(obj.get("biologicalSourceEvent"))
 
-        return FhirNutritionProductInstance(_quantity, _identifier, _name, _lotNumber, _expiry, _useBy, _biologicalSourceEvent)
+        return FhirNutritionProductInstance(_quantity, _identifier, _name, _lot_number, _expiry, _use_by, _biological_source_event)
