@@ -72,6 +72,21 @@ def delete_recipe(id):
     except Exception as e:
         abort(500, e)
 
+@flask_api.route('/ingredient', methods=['POST'])
+def post_ingredient():
+    """Add ingredient to Pantry"""
+    try:
+        if not request.json:
+            abort(400)
+
+        controller = RecipeController()
+
+        data = controller.post_recipe(request.json)
+
+        return Response(json.dumps(data, default=lambda x: x.__dict__), status=200, mimetype="application/json")
+    except Exception as e:
+        abort(500, e)
+
 @flask_api.errorhandler(500)
 def server_error(e):
     logging.exception('error during request')
