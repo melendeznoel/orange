@@ -28,3 +28,6 @@ class Configuration:
 
     def food_api(self):
         return self.apis().get("food").get("prod").get("address")
+    
+    def db_password(self):
+        return self.db().get("password")

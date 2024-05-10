@@ -2,6 +2,7 @@ import logging
 import json
 
 from src.recipe_controller import RecipeController
+from ingredient_controller import IngredientController
 
 from flask import Flask, jsonify, request, abort, Response
 from flask_cors import CORS, cross_origin
@@ -79,9 +80,9 @@ def post_ingredient():
         if not request.json:
             abort(400)
 
-        controller = RecipeController()
+        controller = IngredientController()
 
-        data = controller.post_recipe(request.json)
+        data = controller.post_ingredient(request.json)
 
         return Response(json.dumps(data, default=lambda x: x.__dict__), status=200, mimetype="application/json")
     except Exception as e:
@@ -97,4 +98,3 @@ def server_error(e):
 
 if __name__ == '__main__':
     flask_api.run(debug=True)
-    

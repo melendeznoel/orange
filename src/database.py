@@ -1,11 +1,13 @@
-from src.configuration import Configuration
+"""Database"""
 from pymongo import MongoClient
 from pymongo.server_api import ServerApi
+from src.configuration import Configuration
 
 
 class Database:
+    """Data Store"""
     __instance = None
-    _mongoClientInstance = None
+    _mongo_client_instance = None
 
     def __new__(cls):
         if cls.__instance is None:
@@ -17,20 +19,24 @@ class Database:
         col = self.db()[name]
 
         return col
-    
+
     def client(self):
-        if self._mongoClientInstance is None:
+        if self._mongo_client_instance is None:
             config = Configuration()
 
-            address = config.db_address()
-            port = config.db_port()
+            db_password = config.db_address()
 
-            # "mongodb://192.168.1.190:27017"
-            mongoDbAddress = f'{address}:{port}'
+            uri = f'mongodb+srv://orange:{db_password}@awscluster.4hhub3j.mongodb.net/?retryWrites=true&w=majority&appName=AwsCluster'
 
-            self._mongoClientInstance = MongoClient(mongoDbAddress)
+            self._mongo_client_instance = MongoClient(uri, server_api=ServerApi('1'))
 
-        return self._mongoClientInstance
+            try:
+                self._mongo_client_instance.admin.command('ping')
+                print("Pinged your deployment. You successfully connected to MongoDB!")
+            except Exception as e:
+                print(e)
+
+        return self._mongo_client_instance
 
     def db(self):
         database = self.client()["comida-db"]
