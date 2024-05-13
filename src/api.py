@@ -1,8 +1,8 @@
 import logging
 import json
 
-from src.recipe_controller import RecipeController
-from ingredient_controller import IngredientController
+from .recipe_controller import RecipeController
+from .ingredient_controller import IngredientController
 
 from flask import Flask, jsonify, request, abort, Response
 from flask_cors import CORS, cross_origin
