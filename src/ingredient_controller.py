@@ -1,6 +1,8 @@
 """Controller"""
 import logging
 
+from .fhir.fhir_nutrition_product_ingredient import FhirNutritionProductIngredient
+
 class IngredientController:
     """Ingredient Controller"""
     __instance = None
@@ -11,6 +13,6 @@ class IngredientController:
 
         return cls.__instance
 
-    def post_ingredient(self, ingredient):
+    def create_ingredient(self, ingredient):
         """New Ingredient"""
-        pass
+        return [FhirNutritionProductIngredient.from_dict(y) for y in ingredient.get("ingredient")]

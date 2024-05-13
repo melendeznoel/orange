@@ -1,9 +1,28 @@
 import logging
-from base_service import BaseService
+
+from .base_service import BaseService
+from .database import Database
+
 
 class FhirService(BaseService):
+    """FHIR Resources"""
     def save_resource(self, data):
+        """insert a new resource"""
         try:
-            return data
+            result = None
+
+            pantry = self.__pantry_collection__()
+
+            result = pantry.insert_one(data).inserted_id
+
+            return str(result)
         except Exception as e:
+            logging.exception('error inserting a new fhir resource')
             raise e
+
+    def __pantry_collection__(self):
+        db = Database()
+
+        recipes = db.col("pantry")
+
+        return recipes
