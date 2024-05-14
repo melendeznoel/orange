@@ -2,6 +2,7 @@
 import logging
 
 from .fhir.fhir_nutrition_product_ingredient import FhirNutritionProductIngredient
+from .fhir_service import FhirService
 
 class IngredientController:
     """Ingredient Controller"""
@@ -15,4 +16,10 @@ class IngredientController:
 
     def create_ingredient(self, ingredient):
         """New Ingredient"""
-        return [FhirNutritionProductIngredient.from_dict(y) for y in ingredient.get("ingredient")]
+        fhir_service = FhirService()
+
+        ing = FhirNutritionProductIngredient.from_dict(ingredient)
+
+        fhir_resource = fhir_service.save_resource(ing)
+
+        return fhir_resource
