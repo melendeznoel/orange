@@ -24,9 +24,7 @@ class Database:
         if self._mongo_client_instance is None:
             config = Configuration()
 
-            db_password = config.db_address()
-
-            uri = f'mongodb+srv://orange:{db_password}@awscluster.4hhub3j.mongodb.net/?retryWrites=true&w=majority&appName=AwsCluster'
+            uri = config.db_mongodb_uri()
 
             self._mongo_client_instance = MongoClient(uri, server_api=ServerApi('1'))
 
@@ -39,6 +37,6 @@ class Database:
         return self._mongo_client_instance
 
     def db(self):
-        database = self.client()["comida-db"]
+        database = self.client()["coconut"]
 
         return database

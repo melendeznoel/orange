@@ -23,3 +23,11 @@ class IngredientController:
         fhir_resource = fhir_service.save_resource(ing)
 
         return fhir_resource
+    
+    def search_ingredient(self, params):
+        """Search"""
+        fhir_service = FhirService()
+
+        fhir_resources = fhir_service.search_resource(params)
+
+        return fhir_resources

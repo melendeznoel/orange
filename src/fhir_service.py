@@ -23,6 +23,20 @@ class FhirService(BaseService):
     def __pantry_collection__(self):
         db = Database()
 
-        recipes = db.col("pantry")
+        recipes = db.col("ingredients")
 
         return recipes
+
+    def search_resource(self, data):
+        """search resource"""
+        try:
+            result = None
+
+            pantry = self.__pantry_collection__()
+
+            result = pantry.find()
+
+            return str(result)
+        except Exception as e:
+            logging.exception('error inserting a new fhir resource')
+            raise e

@@ -88,6 +88,23 @@ def post_ingredient():
     except Exception as e:
         abort(500, e)
 
+@flask_api.route('/ingredient/_search', methods=['POST'])
+def post_search_ingredient():
+    """Search ingredient"""
+    try:
+        if not request.json:
+            abort(400)
+
+        controller = IngredientController()
+
+        data = controller.search_ingredient(request.json)
+
+        ingredient = json.dumps(data, default=lambda x: x.__dict__)
+
+        return Response(ingredient, status=200, mimetype="application/json")
+    except Exception as e:
+        abort(500, e)
+
 @flask_api.errorhandler(500)
 def server_error(e):
     """Catch all api errors"""
