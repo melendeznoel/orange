@@ -9,7 +9,6 @@ from .ingredient_controller import IngredientController
 flask_api = Flask(__name__)
 CORS(flask_api)
 
-
 @flask_api.route('/recipe', methods=['GET'])
 def get_recipe():
     try:
@@ -32,7 +31,7 @@ def post_recipe():
         controller = RecipeController()
 
         data = controller.post_recipe(request.json)
-
+        
         recipe = json.dumps(data, default=lambda x: x.__dict__)
 
         return Response(recipe, status=200, mimetype="application/json")
@@ -48,7 +47,6 @@ def put_recipe(id):
         controller = RecipeController()
 
         data = controller.put_recipe(id,request.json)
-
         recipe = json.dumps(data, default=lambda x: x.__dict__)
 
         return Response(recipe, status=200, mimetype="application/json")
