@@ -8,5 +8,18 @@
     ],
     "python.testing.pytestEnabled": false,
     "python.testing.unittestEnabled": true,
-    "python.analysis.typeCheckingMode": "basic"
+    "python.analysis.typeCheckingMode": "basic",
+    "python.defaultInterpreterPath": ".venv/bin/python3.13",
+    "python.terminal.activateEnvironment": false,
+    "github.copilot.chat.commitMessageGeneration.enabled": true,
+    "github.copilot.chat.commitMessageGeneration.instructions": [
+        "Use Conventional Commits format for the subject line: <type>(optional scope): <summary>",
+        "Write an informative body after a blank line.",
+        "Body must include sections in this order: Problem, Solution, Testing.",
+        "Under Problem, explain what issue or goal prompted the change.",
+        "Under Solution, summarize key implementation choices and important files/modules touched.",
+        "Under Testing, list how the change was validated; if untested, explicitly say 'Not run' with reason.",
+        "Prefer concrete details over vague phrases; include behavior impact and edge cases when relevant.",
+        "Keep the subject concise (<= 72 chars) and wrap body lines near 72 chars."
+    ]
 }
