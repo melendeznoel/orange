@@ -1,0 +1,26 @@
+[project]
+name = "orange"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "blinker==1.7.0",
+    "click==8.1.7",
+    "colorama==0.4.6",
+    "distro==1.9.0",
+    "dnspython==2.6.1",
+    "flask==3.0.2",
+    "flask-cors==4.0.1",
+    "h11==0.14.0",
+    "idna==3.6",
+    "itsdangerous==2.1.2",
+    "jinja2==3.1.3",
+    "markupsafe==2.1.5",
+    "pymongo==4.7.1",
+    "pyyaml==6.0.1",
+    "sniffio==1.3.1",
+    "tqdm==4.66.2",
+    "typing-extensions==4.10.0",
+    "werkzeug==3.0.1",
+]
